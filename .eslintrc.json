@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "quotes": ["error", "double"],
+    "indent": ["error", 2],
+    "linebreak-style": "off",
+    "valid-jsdoc": "off",
+    "no-undefined": "off"
+  },
+  "parserOptions": { "ecmaVersion": 2017, "sourceType": "module" },
+  "ignorePatterns": ["node_modules/**"],
+  "env": { "es6": true, "node": true },
+  "extends": ["aqua/node"],
+  "parser": "babel-eslint"
+}
