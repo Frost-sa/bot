@@ -5,8 +5,11 @@ const UserSchema = Schema({
   xp: Number,
   bio: String,
   rep: {
-    "type": Number,
-    "default": 0
+    "type": Object,
+    "default": {
+      reps: 0,
+      likedUsers: []
+    }
   }
 });
 
