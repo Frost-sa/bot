@@ -33,13 +33,13 @@ module.exports = {
       .setTextFont("30px Cairo-bold")
       .setTextSize(25)
       .printText(xp, 191, 84)
-      .printText(Math.abs(rep), 191, 136)
+      .printText(Math.abs(rep.likes), 191, 136)
       .setTextSize(13)
       .setTextAlign("left")
       .printText(xp, 65, 182)
       .setTextAlign("center")
       .setTextSize(22)
-      .printText(rep > 0 ? "+" : rep === 0 ? "" : "-", 174, 136);
+      .printText(rep.likes > 0 ? "+" : rep.likes === 0 ? "" : "-", 174, 136);
     message.channel.send({ files: [{ attachment: canvas.toBuffer(), name: "profile.png" }] });
   }
 };

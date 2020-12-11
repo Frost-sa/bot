@@ -3,7 +3,7 @@ const Embed = require("../../structure/Embed");
 module.exports = {
   name: "top servers",
   description: "إظهار المنافسة وإحصائيات السيرفرات.",
-  aliases: ["فويس",'topservers','السيرفرات'],
+  aliases: ["فويس", "topservers", "السيرفرات"],
   exec(message) {
     const voiceGuilds = this.guilds.cache.map(guild => {
       if (guild.channels.cache.filter(channel => channel.type === "voice" && channel.members.first()).first()) {
@@ -24,7 +24,7 @@ module.exports = {
       .setTitle("السيرفرات المتصدرة.")
       .addField("الأعلى صوتياً:", voiceGuilds.map((guild, i) => `**${++i}.** \`${guild.guildName}\` [\`${guild.all}\`]: [\`${guild.bots} Bots\`]`), true)
       .addField("الأعلى كتابياً:", voiceGuilds.map((guild, i) => `**${++i}.** \`${guild.guildName}\` [\`${guild.all}\`]`), true)
-      .addField('ㅤ','ㅤ')
+      .addField("ㅤ", "ㅤ")
       .addField("الأعلى دخولاً:", voiceGuilds.map((guild, i) => `**${++i}.** \`${guild.guildName}\` [\`${guild.all}\`]`), true)
       .addField("الأعلى اعضاءً:", voiceGuilds.map((guild, i) => `**${++i}.** \`${guild.guildName}\` [\`${guild.all}\`]`), true);
     message.channel.send(statEmbed);

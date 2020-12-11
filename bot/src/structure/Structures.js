@@ -11,13 +11,11 @@ Structures.extend("Message", Message => class extends Message {
           guild = new GuildSchema({ _id: this.guild.id });
           guild.save();
         }
-        guild.messages++;guild.save(); // temp
         return resolve(guild.prefix);
       }
       resolve(process.env.PREFIX);
     });
   }
-
 });
 
 Structures.extend("User", User => class extends User {

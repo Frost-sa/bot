@@ -7,8 +7,8 @@ const UserSchema = Schema({
   rep: {
     "type": Object,
     "default": {
-      reps: 0,
-      likedUsers: []
+      likes: 0,
+      users: []
     }
   }
 });
