@@ -6,8 +6,8 @@ const GuildSchema = Schema({
     "default": process.env.PREFIX
   },
   messages: {
-    "type": Number,
-    "default": 0
+    "type": Array,
+    "default": []
   }
 });
 

@@ -25,9 +25,7 @@ Structures.extend("User", User => class extends User {
       if (!profile) {
         profile = new UserSchema({
           _id: this.id,
-          coins: Math.floor(Math.random() * 100),
-          xp: 0,
-          bio: "I Like Cheese."
+          coins: Math.floor(Math.random() * 100)
         });
         profile.save();
       }
