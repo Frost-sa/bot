@@ -4,7 +4,8 @@
     "indent": ["error", 2],
     "linebreak-style": "off",
     "valid-jsdoc": "off",
-    "no-undefined": "off"
+    "no-undefined": "off",
+    "no-negated-condition": "off"
   },
   "parserOptions": { "ecmaVersion": 2017, "sourceType": "module" },
   "ignorePatterns": ["node_modules/**"],

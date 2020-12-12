@@ -29,7 +29,7 @@ module.exports = {
         setTimeout(() => cooldown.splice(cooldown.indexOf({ command: command.name, user: message.author.id }), 1), defaultCooldown);
       });
     } else if (message.guild) {
-      GuildSchema.findByIdAndUpdate(message.guild.id, { $inc: { messages: 1 } });
+      await GuildSchema.findByIdAndUpdate(message.guild.id, { $push: { messages: message.createdAt.getTime() } });
     }
   }
 };
