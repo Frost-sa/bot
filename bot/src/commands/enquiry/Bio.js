@@ -11,7 +11,7 @@ module.exports = {
       message.channel.send("الحد الأقصى للبايو 24 حرف 🙄").then(msg => msg.delete({ timeout: 5000 }));
       return message.react("⚠️");
     }
-    await UserSchema.findByIdAndUpdate({ _id: message.author.id }, { $set: { bio } });
+    await UserSchema.findByIdAndUpdate(message.author.id, { $set: { bio } });
     message.react("✅");
   }
 };

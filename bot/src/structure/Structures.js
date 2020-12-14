@@ -11,13 +11,11 @@ Structures.extend("Message", Message => class extends Message {
           guild = new GuildSchema({ _id: this.guild.id });
           guild.save();
         }
-        guild.messages++;guild.save(); // temp
         return resolve(guild.prefix);
       }
       resolve(process.env.PREFIX);
     });
   }
-
 });
 
 Structures.extend("User", User => class extends User {
@@ -27,9 +25,7 @@ Structures.extend("User", User => class extends User {
       if (!profile) {
         profile = new UserSchema({
           _id: this.id,
-          coins: Math.floor(Math.random() * 100),
-          xp: 0,
-          bio: "I Like Cheese."
+          coins: Math.floor(Math.random() * 100)
         });
         profile.save();
       }

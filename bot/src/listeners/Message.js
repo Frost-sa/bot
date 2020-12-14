@@ -1,6 +1,6 @@
 const GuildSchema = require("../../../database/models/Guild");
-
 const cooldown = [];
+
 module.exports = {
   name: "message",
   async exec(message) {
@@ -16,15 +16,20 @@ module.exports = {
       if (command.turboOnly && !process.env.TURBO) return;
       if (process.env.TURBO && !command.cooldown) defaultCooldown = 0;
       if (command.guildOnly && !message.guild) return message.react("❌");
-      cooldown.push({ command: command.name, user: message.author.id });
-      setTimeout(() => cooldown.splice(cooldown.indexOf({ command: command.name, user: message.author.id }), 1), defaultCooldown);
       if (message.guild) {
         if (command.memberPermissions && !message.member.hasPermission(command.memberPermissions)) return;
         if (!message.guild.me.hasPermission("ADMINISTRATOR")) return message.channel.send("** ليس لدي الصلاحيات الكافية 🙄 **").catch(console.log);
       }
-      command.exec.bind(this)(message, args);
+      if (!command.cooldown) {
+        cooldown.push({ command: command.name, user: message.author.id });
+        setTimeout(() => cooldown.splice(cooldown.indexOf({ command: command.name, user: message.author.id }), 1), defaultCooldown);
+      }
+      command.exec.bind(this)(message, args, () => {
+        cooldown.push({ command: command.name, user: message.author.id });
+        setTimeout(() => cooldown.splice(cooldown.indexOf({ command: command.name, user: message.author.id }), 1), defaultCooldown);
+      });
     } else if (message.guild) {
-      GuildSchema.findByIdAndUpdate(message.guild.id, { $inc: { messages: 1 } });
+      await GuildSchema.findByIdAndUpdate(message.guild.id, { $push: { messages: message.createdAt.getTime() } });
     }
   }
 };
