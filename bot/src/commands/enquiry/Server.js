@@ -35,14 +35,9 @@ module.exports = {
     const guildEmbed = new Embed()
       .setAuthor(`${guild.name} (${guild.id})`, guild.iconURL({ format: "png", dynamic: true }))
       .addField("المنطقة:", region[guild.region], true)
-      .addField("Boosts:", `⭐ \`${guild.premiumSubscriptionCount}\``, true)
-      .addField("الحد الأقصى للأعضاء:", `\`${guild.maximumMembers}\``, true)
-      .addField("مالك السيرفر:", `\`${guild.owner.user.tag} (${guild.owner.id})\``)
-      .addField("المتصلين بالفويس:", `\`${guild.channels.cache.filter(channel => channel.type === "voice" && channel.members.size > 0).map(channel => channel.members.size).reduce((a, b) => a + b, 0)} (${guild.channels.cache.filter(channel => channel.type === "voice" && channel.members.size > 0).map(channel => channel.members.filter(member => !member.user.bot).size).reduce((a, b) => a + b, 0)} بدون بوتات)\``, true)
-      .addField("تاريخ إنشاء السيرفر:", `\`${moment(guild.createdTimestamp).format("DD/MM/YYYY")} (${moment(guild.createdTimestamp).startOf("milliseconds").fromNow()})\``, true)
-      .addField("عدد الرومات:", `\`${guild.channels.cache.filter(channel => ["text", "voice"].includes(channel.type)).size} (${guild.channels.cache.filter(channel => channel.type === "text").size} كتابي و${guild.channels.cache.filter(channel => channel.type === "voice").size} صوتي)\``, true)
-      .addField("عدد الأعضاء:", `\`\`\`diff\n+ ${guild.memberCount} مجموع الأعضاء\n+ ${guild.members.cache.filter(member => member.hasPermission("MANAGE_MESSAGES")).size} إداريين\n+ ${guild.members.cache.filter(member => member.user.bot).size} بوتات\`\`\``);
-      // .setDescription(`**إحصائيات السيرفر:**\n\n**\`\n المتصلين بالفويس: \`${guild.channels.cache.filter(channel => channel.type === "voice" && channel.members.size > 0).map(channel => channel.members.size).reduce((a, b) => a + b, 0)} (${guild.channels.cache.filter(channel => channel.type === "voice" && channel.members.size > 0).map(channel => channel.members.filter(member => !member.user.bot).size).reduce((a, b) => a + b, 0)} بدون بوتات)\`     عدد الرتب: \`${guild.roles.cache.size}\`\nعدد الرومات: \`${guild.channels.cache.filter(channel => ["text", "voice"].includes(channel.type)).size} (${guild.channels.cache.filter(channel => channel.type === "text").size} كتابي و${guild.channels.cache.filter(channel => channel.type === "voice").size} صوتي)\`**`);
+      .addField("مالك السيرفر:", `${guild.owner}`, true)
+      .addField("تاريخ إنشاء السيرفر:", `\`${moment(guild.createdTimestamp).format("DD/MM/YYYY")} (${moment(guild.createdTimestamp).startOf("milliseconds").fromNow()})\``)
+      .addField("احصائيات السيرفر:", `\`\`\`diff\n+ ${guild.memberCount}/${guild.maximumMembers} مجموع الأعضاء\n+ ${guild.members.cache.filter(member => member.hasPermission("MANAGE_MESSAGES")).size} إداريين\n+ ${guild.members.cache.filter(member => member.user.bot).size} بوتات\n+ المتصلين بالفويس ${guild.channels.cache.filter(channel => channel.type === "voice" && channel.members.size > 0).map(channel => channel.members.size).reduce((a, b) => a + b, 0)}\n+ عدد الرومات ${guild.channels.cache.filter(channel => ["text", "voice"].includes(channel.type)).size} (${guild.channels.cache.filter(channel => channel.type === "text").size} كتابي و${guild.channels.cache.filter(channel => channel.type === "voice").size} صوتي)\`\`\``);
     message.channel.send(guildEmbed);
   }
 };
