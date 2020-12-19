@@ -1,5 +1,4 @@
 require("colors");
-const GuildSchema = require("../../../database/models/Guild");
 
 module.exports = {
   name: "ready",

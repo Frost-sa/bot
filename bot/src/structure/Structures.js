@@ -18,6 +18,13 @@ Structures.extend("Message", Message => class extends Message {
   }
 });
 
+Structures.extend("Guild", Guild => class extends Guild {
+  async getMember(id) {
+    const member = this.members.cache.get(id) || await this.members.fetch(id).catch(() => undefined);
+    return member;
+  }
+});
+
 Structures.extend("User", User => class extends User {
   async getProfile() {
     return new Promise(async resolve => {
