@@ -5,9 +5,14 @@ const GuildSchema = Schema({
     "type": String,
     "default": process.env.PREFIX
   },
-  messages: {
-    "type": Array,
-    "default": []
+  messages: Array,
+  warns: Array,
+  jail: {
+    "type": Object,
+    "default": {
+      roleID: "",
+      prison: []
+    }
   }
 });
 

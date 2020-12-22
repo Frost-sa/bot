@@ -8,7 +8,7 @@ const UserSchema = Schema({
   },
   bio: {
     "type": String,
-    "default": "I like cheese."
+    "default": "Hello, World!"
   },
   rep: {
     "type": Object,
