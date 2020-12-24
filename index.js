@@ -9,10 +9,8 @@ require("./bot");
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
-app.use("/api", require("./routes/Api")(client), (request, response) => {
-  response.status(404).send({ error: "This endpoint couldn't be found or not available." });
-});
-app.use("/sh", require("./routes/Short")(), (request, response) => response.status(404).redirect("/"));
+app.use("/api", require("./routes/Api")(client));
+app.use("/sh", require("./routes/Short")());
 
 app.listen(80, () => console.log("Listening on port 80!"));
 client.login(process.env.TOKEN);

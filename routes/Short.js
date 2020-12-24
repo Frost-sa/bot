@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const ShortSchema = require("../database/models/Short");
+
 module.exports = () => {
   router.get("/:id", async (request, response) => {
-    const url = "https://cdn.discordapp.com/emojis/783496313320898570.gif?v=1";
-    if (!url) return response.sendStatus(404).redirect("/");
-    response.redirect(url);
+    const short = await ShortSchema.findById(request.params.id);
+    console.log("hi");
+    if (!short) return response.status(404).redirect("/");
+    response.redirect(short.url);
   });
   return router;
 };

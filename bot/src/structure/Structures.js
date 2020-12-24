@@ -1,6 +1,7 @@
 const { Structures } = require("discord.js");
 const GuildSchema = require("../../../database/models/Guild");
 const UserSchema = require("../../../database/models/User");
+const MemberSchema = require("../../../database/models/Member");
 
 Structures.extend("Message", Message => class extends Message {
   async getPrefix() {
@@ -13,7 +14,6 @@ Structures.extend("Message", Message => class extends Message {
         }
         return resolve(guild.prefix);
       }
-      resolve(process.env.PREFIX);
     });
   }
 });
@@ -37,6 +37,24 @@ Structures.extend("User", User => class extends User {
         profile.save();
       }
       resolve(profile);
+    });
+  }
+});
+Structures.extend("GuildMember", Member => class extends Member {
+  async getID() {
+    return new Promise(async resolve => {
+      let ID = await MemberSchema.findById(`${this.user.id}-${this.guild.id}`);
+      if (!ID) {
+        ID = new MemberSchema({
+          _id: `${this.user.id}-${this.guild.id}`,
+          textPoints: 0,
+          invites: 0,
+          inviter: null,
+          lastSeen: 0
+        });
+        ID.save();
+      }
+      resolve(ID);
     });
   }
 });

@@ -1,20 +1,24 @@
 const axios = require("axios").default;
 const GuildSchema = require("../../../database/models/Guild");
+const MemberSchema = require("../../../database/models/Member");
+const wait = require('util').promisify(setTimeout);
 const cooldown = [];
+
 
 module.exports = {
   name: "message",
   async exec(message) {
     if (message.author.bot) return;
     message.prefix = await message.getPrefix();
-    message.react = reaction => axios.put(`https://discord.com/api/v8/channels/${message.channel.id}/messages/${message.id}/reactions/${encodeURI(reaction)}/%40me`, {}, {
+    message.react = reaction => wait(200).then(() => axios.put(`https://discord.com/api/v8/channels/${message.channel.id}/messages/${message.id}/reactions/${encodeURI(reaction)}/%40me`, {}, {
       headers: {
-        Authorization: process.env.TOKEN
+        Authorization: `Bot ${process.env.TOKEN}`
       }
-    });
+    }));
+    await message.member.getID();
+    await MemberSchema.findByIdAndUpdate(`${message.author.id}-${message.guild.id}`, { $inc: { textPoints: 1 }});
     const args = message.content.slice(message.prefix.length).split(" ");
     const command = this.commandHandler.find(command => command.name === args[0].toLowerCase() || command.aliases.includes(args[0].toLowerCase()));
-
     if (command && message.content.startsWith(message.prefix)) {
       let defaultCooldown = command.cooldown || 2000;
       if (cooldown.find(person => person.command === command.name && person.user === message.author.id)) return message.react("🤌").then(() => message.delete({ timeout: 2000 }).catch(() => undefined));

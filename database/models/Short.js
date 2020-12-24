@@ -4,4 +4,4 @@ const ShortSchema = Schema({
   url: String
 });
 
-module.exports = model("User", ShortSchema);
+module.exports = model("Short", ShortSchema);
