@@ -4,6 +4,7 @@ module.exports = {
   name: "avatar",
   description: "إظهار صورة المستخدم.",
   aliases: ["عرض", "صورة", "ava", "av"],
+  guildOnly: false,
   async exec(message, args) {
     const user = message.mentions.users.first() || (args[1] ? this.users.cache.get(args[1]) || await this.users.fetch(args[1]).catch(() => undefined) : undefined) || message.author;
     const avatarEmbed = new Embed()

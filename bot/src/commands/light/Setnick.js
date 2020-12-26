@@ -3,6 +3,7 @@ module.exports = {
   description: "",
   memberPermissions: "CHANGE_NICKNAME",
   aliases: ["نك"],
+  guildOnly: true,
   async exec(message, args) {
     let member = message.mentions.members.first();
     const nickname = args.slice(member ? 2 : 1).join(" ");

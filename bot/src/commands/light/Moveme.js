@@ -2,6 +2,7 @@ module.exports = {
   name: "moveme",
   description: "الانضمام الى روم اخر",
   aliases: ["ودني", "اسحبني"],
+  guildOnly: true,
   async exec(message, args) {
     if (!args[1] || !message.member.voice) return message.react("❌");
     const member = message.mentions.members.first() || message.guild.members.cache.find(member => member.id === args[1]);

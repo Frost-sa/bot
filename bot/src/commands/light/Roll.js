@@ -3,7 +3,10 @@ module.exports = {
   name: "roll",
   description: "",
   aliases: ["قرعة"],
+  guildOnly: true,
   async exec(message, args) {
+    const MemberSchema = require("../../../../database/models/Member");
+    await MemberSchema.findByIdAndUpdate(`${message.author.id}-${message.guild.id}`, { $inc: { "voiceTime.total": 50000 }})
     let output = Math.random() * 9;
     const range = args[1]
       ? args[1].split("/").join("").split("+")

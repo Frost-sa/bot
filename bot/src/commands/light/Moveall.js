@@ -3,6 +3,7 @@ module.exports = {
   description: "",
   memberPremmisions: "MOVE_MEMBERS",
   aliases: ["gsadgasdgasgd"],
+  guildOnly: true,
   async exec(message, args) {
     if (!args[1] || !message.member.voice) return message.react("❌");
     const member = message.mentions.members.first() || message.guild.members.cache.find(member => member.id === args[1]);

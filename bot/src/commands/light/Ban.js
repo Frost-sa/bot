@@ -4,6 +4,7 @@ module.exports = {
   description: "",
   aliases: ["حظر", "منع"],
   memberPermissions: "BAN_MEMBERS",
+  guildOnly: true,
   async exec(message, args) {
     const user = message.mentions.users.first() || await message.client.users.fetch(args[1]).catch(() => undefined);
     let reason = args.slice(2).join(" ");

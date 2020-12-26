@@ -2,6 +2,7 @@ const Embed = require("../../structure/Embed");
 module.exports = {
   name: "uptime",
   aliases: ["وقت-التشغيل"],
+  guildOnly: false,
   async exec(message, args) {
     const uptimeEmbed = new Embed()
       .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))

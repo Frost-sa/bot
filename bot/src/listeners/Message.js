@@ -1,7 +1,7 @@
 const axios = require("axios").default;
 const GuildSchema = require("../../../database/models/Guild");
 const MemberSchema = require("../../../database/models/Member");
-const wait = require('util').promisify(setTimeout);
+const wait = require("util").promisify(setTimeout);
 const cooldown = [];
 
 
@@ -16,10 +16,11 @@ module.exports = {
       }
     }));
     await message.member.getID();
-    await MemberSchema.findByIdAndUpdate(`${message.author.id}-${message.guild.id}`, { $inc: { textPoints: 1 }});
+    if (!message.fromEdit) await MemberSchema.findByIdAndUpdate(`${message.author.id}-${message.guild.id}`, { $inc: { textPoints: 1 } });
     const args = message.content.slice(message.prefix.length).split(" ");
     const command = this.commandHandler.find(command => command.name === args[0].toLowerCase() || (command.aliases && command.aliases.includes(args[0].toLowerCase())));
     if (command && message.content.startsWith(message.prefix)) {
+      message.launched = true;
       let defaultCooldown = command.cooldown || 2000;
       if (cooldown.find(person => person.command === command.name && person.user === message.author.id)) return message.react("🤌").then(() => message.delete({ timeout: 2000 }).catch(() => undefined));
       if (command.turboOnly && !process.env.TURBO) return;

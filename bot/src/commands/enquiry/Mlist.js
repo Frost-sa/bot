@@ -2,6 +2,7 @@ const Embed = require("../../structure/Embed");
 module.exports = {
   name: "mlist",
   aliases: ["listm"],
+  guildOnly: true,
   async exec(message, args) {
     const role = message.mentions.roles.first() || message.guild.roles.cache.find(role => role.name.includes(args[1]) || role.id === args[1]);
     if (!role || !args[1]) return false;

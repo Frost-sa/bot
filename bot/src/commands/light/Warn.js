@@ -4,6 +4,7 @@ module.exports = {
   name: "warn",
   description: "",
   aliases: ["تحذير", "حذر"],
+  guildOnly: true,
   memberPermissions: "ADMINISTRATOR",
   async exec(message, args) {
     const member = message.mentions.members.first() || await message.guild.getMember(args[1]);

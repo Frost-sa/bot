@@ -7,6 +7,7 @@ module.exports = {
   name: "user",
   description: "إظهار معلومات المستخدم وسيرفراته.",
   aliases: ["يوزر", "userinfo", "userid"],
+  guildOnly: false,
   async exec(message, args) {
     const colors = { online: "#43b581", idle: "#faa61a", dnd: "#f04747", offline: "#747f8d" };
     const device = { web: "متصفح", mobile: "جوال", desktop: "بي سي" };
@@ -28,8 +29,8 @@ module.exports = {
     let currentPage = 0;
     const generateEmbed = () => new Embed()
       .setAuthor(user.tag, user.displayAvatarURL({ format: "png", dynamic: true }))
-      .addField("تاريخ الانضمام للديسكورد:", `\` ${moment(user.createdTimestamp).format("DD/MM/YYYY")} (${moment(user.createdTimestamp).startOf("milliseconds").fromNow()})\``, true)
-      .addField("متصل من:", `\`${user.presence.clientStatus ? Object.keys(user.presence.clientStatus).map(key => device[key]).join(" و") : "غير معروف"}\``, true)
+      .addField("تاريخ الانضمام للديسكورد:", `\` ${moment(user.createdTimestamp).format("DD/MM/YYYY")} (${moment(user.createdTimestamp).startOf("milliseconds").fromNow()}) \``, true)
+      .addField("متصل من:", `\` ${user.presence.clientStatus ? Object.keys(user.presence.clientStatus).map(key => device[key]).join(" و") : "غير معروف"} \``, true)
       .addField("السيرفرات المشتركة:", mutualGuilds.length ? `\`\`\`diff\n${mutualGuilds[currentPage].join("\n")}\`\`\`` : "```diff\n+ لا توجد سيرفرات مشتركة```")
       .setColor(colors[user.presence.status]);
     message.channel.send(generateEmbed()).then(async msg => {

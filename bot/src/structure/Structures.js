@@ -57,4 +57,16 @@ Structures.extend("GuildMember", Member => class extends Member {
       resolve(ID);
     });
   }
+
+  async saveVoiceProgress() {
+    if (this.joinedVoice) {
+      await MemberSchema.findByIdAndUpdate(`${this.user.id}-${this.guild.id}`, { $inc: { "voiceTime.total": Date.now() - this.joinedVoice } });
+      this.joinedVoice = Date.now();
+      if (this.joinedVipVoice) {
+        await MemberSchema.findByIdAndUpdate(`${this.user.id}-${this.guild.id}`, { $inc: { "voiceTime.vip": Date.now() - this.joinedVipVoice } });
+        this.joinedVipVoice = Date.now();
+      }
+    }
+    return Promise.resolve(true);
+  }
 });

@@ -2,10 +2,12 @@ const Embed = require("../../structure/Embed");
 const GuildSchema = require("../../../../database/models/Guild");
 
 module.exports = {
-  name: "top-servers",
+  name: "topservers",
   description: "إظهار المنافسة وإحصائيات السيرفرات.",
-  aliases: ["فويس", "topservers", "السيرفرات"],
-  async exec(message) {
+  aliases: ["فويس", "السيرفرات", "top-servers"],
+  guildOnly: false,
+  async exec(message, args) {
+    if (args[1] && args[1] !== "servers") return false;
     const voiceGuilds = this.guilds.cache.map(guild => {
         if (guild.channels.cache.filter(channel => channel.type === "voice").first()) {
           return guild.channels.cache.filter(channel => channel.type === "voice").map(channel => ({
@@ -52,20 +54,9 @@ module.exports = {
           return arr.slice(0, 6);
         })(), true)
       .addField("الأعلى كتابياً:", textGuilds.slice(0, 5).find(guild => guild.id === message.guild.id) ? textGuilds.slice(0, 5).map(guild => guild.str) : (() => {
-          textGuilds.splice(6, 0, { str: `**${textGuilds.indexOf(textGuilds.find(guild => guild.id === message.guild.id)) + 1}. ${message.guild.name} \` ${message.guild.messages} \`**` });
-          return textGuilds.map(guild => guild.str).slice(0, 5);
-        })(), true)
-      .addField("ㅤ", "ㅤ", true)
-      .addField("الأعلى دخولاً:", voiceGuilds.slice(0, 5).map((guild, i) => `${++i}. ${guild.name} \` ${guild.all} \``), true)
-      .addField("الأعلى اعضاءً:", memberGuilds.slice(0, 5).find(guild => guild.id === message.guild.id) ?
-        memberGuilds.map((guild, i) => guild === message.guild ? `**${++i}. ${guild.name} \` ${guild.memberCount} \`**` : `${++i}. ${guild.name} \` ${guild.memberCount} \``)
-        .slice(0, 5) :
-        (() => {
-          const arr = memberGuilds.map((guild, i) => guild === message.guild ? `**${++i}. ${guild.name} \` ${guild.memberCount} \`**` : `${++i}. ${guild.name} \` ${guild.memberCount} \``)
-            .slice(0, 5);
-          arr.push(`**${memberGuilds.indexOf(memberGuilds.find(guild => guild.id === message.guild.id)) + 1}. ${message.guild.name} \` ${message.guild.memberCount} \`**`);
-          return arr;
-        })(), true)
+        textGuilds.splice(6, 0, { str: `**${textGuilds.indexOf(textGuilds.find(guild => guild.id === message.guild.id)) + 1}. ${message.guild.name} \` ${message.guild.messages} \`**` });
+        return textGuilds.map(guild => guild.str).slice(0, 5);
+      })(), true)
       .addField("ㅤ", "ㅤ", true);
     message.channel.send(statEmbed);
   }

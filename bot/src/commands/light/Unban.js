@@ -2,6 +2,7 @@ module.exports = {
   name: "unban",
   description: "",
   aliases: ["فك-الحظر", "فك-المنع"],
+  guildOnly: true,
   memberPermissions: "ADMINISTRATOR",
   async exec(message, args) {
     const user = message.mentions.users.first() || await message.client.users.fetch(args[1]).catch(() => undefined);

@@ -4,6 +4,7 @@ module.exports = {
   name: "bio",
   description: "تغيير الوصف الخاص بك في البروفايل.",
   aliases: ["bio", "بايو", "setbio"],
+  guildOnly: true,
   async exec(message, args) {
     const bio = args.slice(1).join(" ");
     if (!bio) return message.react("❌");

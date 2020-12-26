@@ -4,7 +4,8 @@ const moment = require("moment");
 
 module.exports = {
   name: "top first",
-  aliases: ["العليا", "الرومات الاولى", "first"],
+  aliases: ["العليا", "الرومات الاولى", "first", "topvip", "topfirst"],
+  guildOnly: true,
   async exec(message, args) {
     let membersData = (await MemberSchema.find({})).filter(Member => Member.id.endsWith(`-${message.guild.id}`));
     let currentPage = 0;
@@ -14,7 +15,7 @@ module.exports = {
     function getEmbed () {
       const topEmbed = new Embed()
       .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))
-      .addField(`متصدري الرومات العليا في ${role ? role.name : "السيرفر"}`, `**${membersData.sort((a, b) => b.voiceTime.vip - a.voiceTime.vip).slice(currentPage * 10, currentPage * 10 + 10).map((member, index) => `${currentPage * 10 + index + 1}. <@${member.id.split("-")[0]}> | \`\`${getPerc(member)}\`\` ${currentPage == 0 ? { 0: "🥇", 1: "🥈", 2: "🥉"}[index] || "" : ""} `).join("\n")}**`)
+      .addField(`متصدري الرومات العليا في ${role ? role.name : "السيرفر"}`, `**${membersData.sort((a, b) => b.voiceTime.vip - a.voiceTime.vip).slice(currentPage * 10, currentPage * 10 + 10).map((member, index) => `${currentPage * 10 + index + 1}. <@${member.id.split("-")[0]}> | \` ${getPerc(member)} \` ${currentPage == 0 ? { 0: "🥇", 1: "🥈", 2: "🥉"}[index] || "" : ""} `).join("\n")}**`)
       .setFooter("الصفحة " + (currentPage + 1) + "/" + (1 + Math.floor(membersData.length / 10)))
       return topEmbed;
     }

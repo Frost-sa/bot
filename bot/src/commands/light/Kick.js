@@ -4,6 +4,7 @@ module.exports = {
   description: "",
   aliases: ["طرد"],
   memberPermissions: "KICK_MEMBERS",
+  guildOnly: true,
   async exec(message, args) {
     const member = message.mentions.members.first() || await message.guild.getMember(args[1]);
     let reason = args.slice(2).join(" ");

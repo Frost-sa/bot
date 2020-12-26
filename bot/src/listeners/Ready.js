@@ -1,5 +1,5 @@
 require("colors");
-const wait = require('util').promisify(setTimeout);
+const wait = require("util").promisify(setTimeout);
 module.exports = {
   name: "ready",
   async exec() {
@@ -10,7 +10,6 @@ module.exports = {
       if (!g.me.hasPermission("ADMINISTRATOR")) return false;
       const invites = await g.fetchInvites();
       this.invites[g.id] = invites;
-      console.log (this.user.username)
     });
   }
 };

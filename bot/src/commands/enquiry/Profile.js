@@ -9,6 +9,7 @@ module.exports = {
   name: "profile",
   description: "إظهار بروفايل المستخدم لدى فروست.",
   aliases: ["بروفايل", "p", "fid"],
+  guildOnly: true,
   async exec(message, args) {
     const user = message.mentions.users.first() || (args[1] ? this.users.cache.get(args[1]) || await this.users.fetch(args[1]).catch(() => undefined) : undefined) || message.author;
     if (user.bot) return;

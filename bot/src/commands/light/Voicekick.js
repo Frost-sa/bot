@@ -2,6 +2,7 @@ module.exports = {
   name: "vkick",
   description: "",
   memberPermissions: "MOVE_MEMBERS",
+  guildOnly: true,
   aliases: ["voicekick", "voice-kick"],
   async exec(message, args) {
     const member = message.mentions.members.first() || await message.guild.getMember(args[1]);

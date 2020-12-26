@@ -3,6 +3,7 @@ module.exports = {
   description: "",
   aliases: ["ود", "اسحب"],
   memberPermissions: ["MOVE_MEMBERS"],
+  guildOnly: true,
   async exec(message, args) {
     const baseMember = message.mentions.members.first() || await message.guild.getMember(args[1]);
     const targetMember = args[2] ? await message.guild.getMember(args[2]) || message.mentions.members.array()[1] : undefined;

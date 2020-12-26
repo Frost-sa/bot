@@ -2,6 +2,7 @@ const Embed = require("../../structure/Embed");
 module.exports = {
   name: "ping",
   aliases: ["استجابة", "ping-test"],
+  guildOnly: false,
   async exec(message, args) {
     const beforeSend = Date.now();
     const theMessage = await message.channel.send("Ping");
