@@ -18,7 +18,9 @@ module.exports = {
       for await (const aReason of reasonsList) {
         await reply.react(Object.entries(reactions)[reasonsList.indexOf(aReason)][0]);
       }
+      await reply.react("❌");
       const reaction = await reply.awaitReactions((reaction, user) => user === message.member.user, { errors: ["time"], time: 15000, max: 1 }).then(reaction => reaction.first().emoji.name).catch(() => undefined);
+      if (reaction === "❌") return reply.delete();
       reason = reasonsList[reactions[reaction]];
       reply.delete();
       if (!reason) {

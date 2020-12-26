@@ -5,6 +5,7 @@ const MemberSchema = require("../../../../database/models/Member");
 
 module.exports = {
   name: "id",
+  description: "إظهار معلومات العضو في السيرفر.",
   aliases: ["idenity", "هوية"],
   async exec(message, args) {
     let member = message.mentions.members.first() || await message.guild.getMember(args[1]);

@@ -8,17 +8,8 @@ module.exports = {
   description: "إظهار معلومات المستخدم وسيرفراته.",
   aliases: ["يوزر", "userinfo", "userid"],
   async exec(message, args) {
-    const colors = {
-      online: "#43b581",
-      idle: "#faa61a",
-      dnd: "#f04747",
-      offline: "#747f8d"
-    };
-    const device = {
-      web: "متصفح",
-      mobile: "جوال",
-      desktop: "بي سي"
-    };
+    const colors = { online: "#43b581", idle: "#faa61a", dnd: "#f04747", offline: "#747f8d" };
+    const device = { web: "متصفح", mobile: "جوال", desktop: "بي سي" };
     const user = message.mentions.users.first() || (args[1] ? this.users.cache.get(args[1]) || await this.users.fetch(args[1]).catch(() => undefined) : undefined) || message.author;
     const mutualGuilds = (await Promise.all(this.guilds.cache.map(async guild => {
       const member = guild.members.cache.get(user.id) || await guild.members.fetch(user.id).catch(() => undefined);

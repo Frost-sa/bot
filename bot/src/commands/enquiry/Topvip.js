@@ -8,9 +8,9 @@ module.exports = {
   async exec(message, args) {
     let membersData = (await MemberSchema.find({})).filter(Member => Member.id.endsWith(`-${message.guild.id}`));
     let currentPage = 0;
-    const role = message.mentions.roles.first() || message.guild.roles.cache.find(role => role.id == args[1] || role.name.includes(args[1]));
+    const role = message.mentions.roles.first() || message.guild.roles.cache.find(role => role.id === args[1] || role.name.includes(args[1]));
     if (args[1] && !role) return message.react("❌");
-    if (role) membersData = membersData.filter(member => role.members.find(m => m.user.id == member.id.split("-")[0]));
+    if (role) membersData = membersData.filter(member => role.members.find(m => m.user.id === member.id.split("-")[0]));
     function getEmbed () {
       const topEmbed = new Embed()
       .setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))
