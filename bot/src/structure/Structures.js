@@ -6,6 +6,7 @@ const MemberSchema = require("../../../database/models/Member");
 Structures.extend("Message", Message => class extends Message {
   async getPrefix() {
     return new Promise(async resolve => {
+      if (!this.guild) return resolve(process.env.PREFIX);
       if (this.guild) {
         let guild = await GuildSchema.findById(this.guild.id);
         if (!guild) {

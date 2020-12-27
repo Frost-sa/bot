@@ -6,58 +6,33 @@ module.exports = {
   description: "إظهار المنافسة وإحصائيات السيرفرات.",
   aliases: ["فويس", "السيرفرات", "top-servers"],
   guildOnly: false,
-  async exec(message, args) {
-    if (args[1] && args[1] !== "servers") return false;
+  async exec(message) {
+    const guildsData = await GuildSchema.find({});
     const voiceGuilds = this.guilds.cache.map(guild => {
-        if (guild.channels.cache.filter(channel => channel.type === "voice").first()) {
-          return guild.channels.cache.filter(channel => channel.type === "voice").map(channel => ({
-            all: channel.members.size,
-            bots: channel.members.filter(member => member.user.bot).size
-          })).reduce((a, b) => ({
-            name: a.name,
-            all: a.all + (b.all || 0),
-            bots: a.bots + (b.bots || 0),
-            id: guild.id
-          }), {
-            all: 0,
-            bots: 0,
-            name: guild.name,
-            id: guild.id
-          });
-        }
-        return undefined;
-      })
-      .filter(guild => guild)
-      .sort((a, b) => b.all - a.all);
-    const textGuilds = (await Promise.all(this.guilds.cache.map(guild => GuildSchema.findById(guild.id))))
-      .filter(guild => guild).map(guild => ({
-        messages: guild.messages.filter(message => new Date().getTime() - message <= 8.64e+7).length,
-        name: this.guilds.cache.get(guild._id).name,
-        id: guild._id
-      }))
-      .sort((a, b) => b.messages - a.messages)
-      .map((guild, i) => ({
-        str: `${guild.id === (message.guild ? message.guild.id : undefined) ? `**${++i}. ${guild.name}**` : `${++i}. ${guild.name}`} \` ${guild.messages} \``,
-        id: guild.id
-      }));
-    const memberGuilds = this.guilds.cache.sort((a, b) => b.memberCount - a.memberCount).array();
-    message.guild.messages = !textGuilds.find(guild => guild.id === message.guild.id) ? (await GuildSchema.findById(message.guild.id)).messages.filter(message => new Date().getTime() - message <= 8.64e+7).length : undefined;
-    const statEmbed = new Embed()
+      const channels = guild.channels.cache.filter(channel => channel.type === "voice").array().map(channel => channel.members.size);
+      let totalMembers = 0;
+      channels.forEach(channel => totalMembers += channel);
+      guild.voiceMembers = totalMembers;
+      guild.messages = guild.messages || [];
+      return guild;
+    }).sort((a, b) => b.voiceMembers - a.voiceMembers);
+    const textGuilds = guildsData.map(guild => {
+      guild.messages = guild.messages.filter(message => (Date.now() - message) < 2 * 60 * 60 * 1000);
+      return guild;
+    }).sort((a, b) => b.messages.length - a.messages.length);
+    textGuilds.forEach(guild => guild.forText = true);
+    const getContent = (guild, index) => {
+      const guildName = this.guilds.cache.get(guild.id);
+      return `${message.guild && guild.id === message.guild.id ? "**" : ""} ${index + 1}. ${guildName} | \` ${guild.forText ? guild.messages.length : guild.voiceMembers} \`${message.guild && guild.id === message.guild.id ? "**" : ""}`;
+    };
+    const guildFilter = guild => message.guild && guild.id === message.guild.id;
+    const voiceGuild = voiceGuilds.find(guildFilter);
+    const textGuild = textGuilds.find(guildFilter);
+    const statsEmbed = new Embed()
+      .setAuthor(message.author.username, message.author.displayAvatarURL({ dyanmic: true }))
       .setTitle("السيرفرات المتصدرة")
-      .addField("الأعلى صوتياً:", voiceGuilds.slice(0, 5).find(guild => guild.id === message.guild.id) ?
-        voiceGuilds.slice(0, 5).map((guild, i) => guild.id === message.guild.id ? `**${++i}. ${guild.name}** \` ${guild.all} \`` : `${++i}. ${guild.name} \` ${guild.all} \``) :
-        (() => {
-          const members = message.guild.channels.cache.filter(channel => channel.type === "voice").map(channel => channel.members.size)
-            .reduce((a, b) => a + (b || 0), 0);
-          const arr = voiceGuilds.map((guild, i) => guild.id === message.guild.id ? `**${++i}. ${guild.name}** \` ${guild.all} \`` : `${++i}. ${guild.name} \` ${guild.all} \``);
-          arr.splice(6, 0, `**${voiceGuilds.indexOf(voiceGuilds.find(guild => guild.id === message.guild.id)) + 1}. ${message.guild.name} \` ${members} \`**`);
-          return arr.slice(0, 6);
-        })(), true)
-      .addField("الأعلى كتابياً:", textGuilds.slice(0, 5).find(guild => guild.id === message.guild.id) ? textGuilds.slice(0, 5).map(guild => guild.str) : (() => {
-        textGuilds.splice(6, 0, { str: `**${textGuilds.indexOf(textGuilds.find(guild => guild.id === message.guild.id)) + 1}. ${message.guild.name} \` ${message.guild.messages} \`**` });
-        return textGuilds.map(guild => guild.str).slice(0, 5);
-      })(), true)
-      .addField("ㅤ", "ㅤ", true);
-    message.channel.send(statEmbed);
+      .addField("الأعلى صوتياً :", `${voiceGuilds.slice(0, 5).map(getContent).join("\n")} ${voiceGuild ? `\n${getContent(voiceGuild, voiceGuilds.indexOf(voiceGuild) + 1)}` : ""}`, true)
+      .addField("الأعلى كتابياً :", `${textGuilds.slice(0, 5).map(getContent).join("\n")} ${textGuilds.indexOf(textGuild) > 4 ? `\n${getContent(textGuild, textGuilds.indexOf(textGuild) + 1)}` : ""}`, true);
+    message.channel.send(statsEmbed);
   }
 };

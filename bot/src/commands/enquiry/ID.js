@@ -9,7 +9,7 @@ module.exports = {
   aliases: ["idenity", "هوية"],
   guildOnly: true,
   async exec(message, args) {
-    let member = message.mentions.members.first() || await message.guild.getMember(args[1]);
+    let member = message.mentions.members.first() || await message.guild.getMember(args[1]) || message.member;
     const memberInfo = await member.getID();
     const membersData = (await MemberSchema.find({})).filter(Member => Member._id.endsWith(`-${message.guild.id}`));
     for (const member of membersData) {
