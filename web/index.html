@@ -1,0 +1,426 @@
+<html>
+<head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frost</title>
+<!-- Start CSS -->
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<!-- Cairo Font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;900&display=swap" rel="stylesheet">
+<!-- Slider -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<!-- Style -->
+<link rel="stylesheet" href="assest/css/style.css">
+
+
+<!-- END CSS -->
+<style>
+
+
+
+
+/* Styles for the tilt block */
+#tilt {
+  display: block;
+
+  background-color: grey;
+  margin: 0 auto;
+  transition: box-shadow 0.1s, transform 0.1s;
+  
+  /*
+    * Adding image to the background
+    * No relation to the hover effect.
+    */
+  background-image: url(http://unsplash.it/300/200);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#tilt:hover {
+  box-shadow: 0px 0px 30px rgba(0,0,0, 0.6);
+  cursor: pointer;
+}
+
+
+
+	.object {
+  animation: MoveUpDown 1s linear infinite;
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 5px;
+  }
+}
+
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:absolute;top:-10%;z-index:2;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+/* Demo Purpose Only*/
+.demo {
+  font-family: 'Raleway', sans-serif;
+	color:#fff;
+    display: block;
+    margin: 0 auto;
+    padding: 15px 0;
+    text-align: center;
+}
+.demo a{
+  font-family: 'Raleway', sans-serif;
+color: #000;		
+}
+
+</style>
+</head>
+<body class="index">
+
+<!-- Header -->
+	<header>
+		<div class="top-header">
+			<div class="logo ">
+				<a href="#" class="logo-border"><img src="assest/img/logo.png" /></a>
+			</div>
+			<div class="partner-btn"><a class="cairo link-icon f-menu" href="#"><span class="link-text">كن شريكاً</span></a></div>
+			<div class="top-menu">
+				<a href="#" class="cairo link-icon f-menu"><span class="link-text">الرئيسية</span></a>
+				<a href="#" class="cairo link-icon f-menu"><span class="link-text">المجتمع</span></a>
+				<a></a>
+			</div>
+			<!-- mobile-menu -->
+			<nav class="menu">
+				<input type="checkbox" id="menuToggle">
+				<label for="menuToggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+				<ul>
+					<a href="#"><li>الرئيسية</li></a>
+					<a href="#"><li>المجتمع</li></a>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+<!-- Secton 1 -->
+	<div class="section-1">
+		<div class="snowflakes" aria-hidden="true">
+			<div class="snowflake icon-2">
+			❅
+			</div>
+			<div class="snowflake icon-3">
+			❅
+			</div>
+			<div class="snowflake icon-2">
+			❆
+			</div>
+			<div class="snowflake icon-3">
+			❄
+			</div>
+			<div class="snowflake icon-2">
+			❅
+			</div>
+			<div class="snowflake icon-3">
+			❆
+			</div>
+			<div class="snowflake icon-2">
+			❄
+			</div>
+			<div class="snowflake icon-3">
+			❅
+			</div>
+			<div class="snowflake icon-2">
+			❆
+			</div>
+			<div class="snowflake icon-3">
+			❄
+			</div>
+		  </div>
+
+		<div class="content">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12 float-right d-r">
+				<div class="text-box-1 cairo">
+					<div class="text-1 typing">فروست</div>
+					<div class="text-4">خصص , عدل, واجعل مجتمعك مكاناً أفضل.</div>
+				</div>
+				<div class="section-btns">
+				    
+					<a class="b-btn cairo" href="#">إبدأ الآن!</a>
+					<a class="btn"  href="#section2">معرفة المزيد</a>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
+				<div class="video-box">
+					<iframe width="100%" height="250" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=0&mute=1"></iframe>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	<!-- Section 2 -->
+	<div class="section-2" id="section2">
+	    <div class="bottom-section-1"></div>
+		<div class="content-2">
+			<div class="col-lg-7 col-md-7 col-12 col-sm-12 col-xs-12 float-right">
+				<div class="text-box-2 m-r-10 cairo">
+					<h2 class="text-center text-35 mb-20">هذا النص هو مثال</h2>
+					<p class="text-center text-30">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة, لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى</p>
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-5 col-12 col-sm-12 col-xs-12 float-left">
+				<div class="text-box-2 m-l-10 cairo">
+					<img class="dash-img" id="tilt" src="assest/img/dash.png" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Section 3 -->
+	<div class="section-3">
+		<div class="content-3">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-12">
+					<h2 class="text-center text-35 mb-40">شركاؤنا الملهمون</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-12 slider-bg">
+					 <!-- Slider -->
+						<section id="client-slider" class="my-5">
+
+  <div class="container mt-3">
+    <div class="row owl-carousel">
+      <div class="card card-size">
+        <div class="card-img-top text-center px-5 mt-3 m-t-10">
+          <img src="assest/img/avatar.png" class="img-fluid img-size">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">مود القباني</h5>
+        </div>
+      </div>
+      
+      <div class="card card-size">
+        <div class="card-img-top text-center px-5 mt-3 m-t-10">
+         <img src="assest/img/avatar.png" class="img-fluid img-size">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">مود القباني</h5>
+        </div>
+      </div>
+      
+      <div class="card card-size">
+        <div class="card-img-top text-center px-5 mt-3 m-t-10">
+         <img src="assest/img/avatar.png" class="img-fluid img-size">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">مود القباني</h5>
+        </div>
+      </div>
+      
+      <div class="card card-size">
+        <div class="card-img-top text-center px-5 mt-3 m-t-10">
+         <img src="assest/img/avatar.png" class="img-fluid img-size">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">مود القباني</h5>
+        </div>
+      </div>
+      
+      <div class="card card-size">
+        <div class="card-img-top text-center px-5 mt-3 m-t-10">
+          <img src="assest/img/avatar.png" class="img-fluid img-size">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">مود القباني</h5>
+        </div>
+      </div>
+      
+      <div class="card card-size">
+        <div class="card-img-top text-center px-5 mt-3 m-t-10">
+          <img src="assest/img/avatar.png" class="img-fluid img-size">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">مود القباني</h5>
+        </div>
+      </div>
+      
+      <div class="card card-size">
+        <div class="card-img-top text-center px-5 mt-3 m-t-10">
+          <img src="assest/img/avatar.png" class="img-fluid img-size">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">مود القباني</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Section 3 -->
+	<div class="section-4">
+		<div class="content-4">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 float-right">
+				<div class=" text-box-4 m-r-10 cairo">
+					<h2 class="text-center text-35 mb-20">احصائيات فروست</h2>
+					
+					<div class="row text-center mb-20">
+						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-4">
+							<p class="s-number">+<span data-purecounter-start="0" data-purecounter-end="120" data-purecounter-decimals="0"
+                data-purecounter-once="true" class="purecounter">0</span></p>
+							<p class="s-text">أمر</p>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-4">
+							<p class="s-number"><span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-decimals="0"
+                data-purecounter-once="true" class="purecounter">0</span></p>
+							<p class="s-text">عضو</p>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-4">
+							<p class="s-number"><span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-decimals="0"
+                data-purecounter-once="true" class="purecounter">0</span></p>
+							<p class="s-text">سيرفر</p>
+						</div>
+					</div>
+					<div class="row text-right">
+						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-4 text-center">
+							
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-4 text-center">
+							<p class="s-number"><span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-decimals="0"
+                data-purecounter-once="true" class="purecounter">0</span></p>
+							<p class="s-text">زياراة للموقع</p>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-4 text-center">
+							<p class="s-number"><span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-decimals="0"
+                data-purecounter-once="true" class="purecounter">0</span></p>
+							<p class="s-text">توربو</p>
+						</div>
+					</div>
+				</div>
+				<div class="row social-footer text-center">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2"></div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-1"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
+						<a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
+						<a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
+						<a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2"></div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-1"></div>
+				</div>
+				<div class="row copyright copyright2 copyright-index text-center"> 2020 جميع الحقوق محفوظة لـفروست ©</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 float-left">
+				<img class="footer-img object" src="assest/img/logo-footer.png" />
+				<div class="row text-center"><a href="#" class="footer-link">سياسة الاستخدام والخصوصية</a></div>
+				<div class="row text-center"><img class="pay-img" src="assest/img/pay.png" /></div>
+			</div>
+		</div>
+		<div class="bottom-section-4"></div>
+	</div>
+	<!-- Lang Btn -->
+	<div class="plus-button"></div>
+	<a href="#"><div class="social-button uk-button"></div></a>
+	<a href="#"><div class="social-button fr-button"></div></a>
+	<a href="#"><div class="social-button sa-button"></div></a>
+	<!-- Scroll Top -->
+	<a href="#top" id="scroll" style="display: none;">
+	
+<!-- Start JS -->
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Script -->
+<script>
+    /* Store the element in el */
+let el = document.getElementById('tilt')
+
+/* Get the height and width of the element */
+const height = el.clientHeight
+const width = el.clientWidth
+
+/*
+  * Add a listener for mousemove event
+  * Which will trigger function 'handleMove'
+  * On mousemove
+  */
+el.addEventListener('mousemove', handleMove)
+
+/* Define function a */
+function handleMove(e) {
+  /*
+    * Get position of mouse cursor
+    * With respect to the element
+    * On mouseover
+    */
+  /* Store the x position */
+  const xVal = e.layerX
+  /* Store the y position */
+  const yVal = e.layerY
+  
+  /*
+    * Calculate rotation valuee along the Y-axis
+    * Here the multiplier 20 is to
+    * Control the rotation
+    * You can change the value and see the results
+    */
+  const yRotation = 20 * ((xVal - width / 2) / width)
+  
+  /* Calculate the rotation along the X-axis */
+  const xRotation = -20 * ((yVal - height / 2) / height)
+  
+  /* Generate string for CSS transform property */
+  const string = 'perspective(500px) scale(1.1) rotateX(' + xRotation + 'deg) rotateY(' + yRotation + 'deg)'
+  
+  /* Apply the calculated transformation */
+  el.style.transform = string
+}
+
+/* Add listener for mouseout event, remove the rotation */
+el.addEventListener('mouseout', function() {
+  el.style.transform = 'perspective(500px) scale(1) rotateX(0) rotateY(0)'
+})
+
+/* Add listener for mousedown event, to simulate click */
+el.addEventListener('mousedown', function() {
+  el.style.transform = 'perspective(500px) scale(0.9) rotateX(0) rotateY(0)'
+})
+
+/* Add listener for mouseup, simulate release of mouse click */
+el.addEventListener('mouseup', function() {
+  el.style.transform = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)'
+})
+
+</script>
+<!-- counter -->
+<script type="text/javascript" src="assest/js/purecounter.js"></script>
+
+<script src="assest/js/script.js"></script>
+<script src="assest/js/slider.js"></script>
+<!-- END JS -->
+</body>
+</html>
