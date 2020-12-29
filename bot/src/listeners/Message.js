@@ -1,6 +1,7 @@
 const axios = require("axios").default;
 const GuildSchema = require("../../../database/models/Guild");
 const MemberSchema = require("../../../database/models/Member");
+const UserSchema = require("../../../database/models/User");
 const wait = require("util").promisify(setTimeout);
 const cooldown = [];
 
@@ -22,7 +23,6 @@ module.exports = {
     if (command && message.content.startsWith(message.prefix)) {
       message.launched = true;
       let defaultCooldown = command.cooldown || 2000;
-      console.log (command);
       if (cooldown.find(person => person.command === command.name && person.user === message.author.id)) return message.react("🤌").then(() => message.delete({ timeout: 2000 }).catch(() => undefined));
       if (command.turboOnly && !process.env.TURBO) return;
       if (process.env.TURBO && !command.cooldown) defaultCooldown = 0;
@@ -41,6 +41,7 @@ module.exports = {
       });
     } else if (message.guild) {
       await GuildSchema.findByIdAndUpdate(message.guild.id, { $push: { messages: message.createdAt.getTime() } });
+      await UserSchema.findByIdAndUpdate(message.author.id, { $inc: { xp: 0.3 } });
     }
   }
 };
