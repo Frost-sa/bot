@@ -14,11 +14,13 @@ app.use("/sh", require("./routes/Short")());
 
 
 "Leaderboard Backend";
-const leaderboards = require("fs").readdirSync(__dirname + "/leaderboards");
 app.get("/leaderboard.png", async (request, response) => {
-    const page = leaderboards[request.query.page];
-    if (!page) return response.status(404).redirect("/");
-    response.sendFile(__dirname + "/leaderboards/" + page);
+  const dir = `${__dirname}/leaderboards/${request.query.coins ? "coins" : "xp"}`;
+  const leaderboards = require("fs").readdirSync(dir);
+  const page = leaderboards[request.query.page];
+  if (!page) return response.status(404).redirect("/");
+  if (Date.now () - client.lastLeaderUpdate > 60000) await this.updateLeaderBoard();
+  response.sendFile(`${dir}/${page}`);
 });
 app.listen(80, () => console.log("Listening on port 80!"));
 client.login(process.env.TOKEN);
