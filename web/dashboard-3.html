@@ -1,0 +1,557 @@
+<html>
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frost Dashboard</title>
+<!-- Start CSS -->
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<!-- Cairo Font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+<!-- Slider -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<!-- Style -->
+<link rel="stylesheet" href="assest/css/style.css">
+<link rel="stylesheet" href="assest/css/keyframes.css">
+    <link rel="stylesheet" href="assest/css/pageTransitions.css">
+<!-- Tooltip -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zkreations/tooltips@3/tooltips.min.css">
+<!-- END CSS -->
+<style>
+	.object {
+  animation: MoveUpDown 1s linear infinite;
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 5px;
+  }
+}
+
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:2;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+/* Demo Purpose Only*/
+.demo {
+  font-family: 'Raleway', sans-serif;
+	color:#fff;
+    display: block;
+    margin: 0 auto;
+    padding: 15px 0;
+    text-align: center;
+}
+.demo a{
+  font-family: 'Raleway', sans-serif;
+color: #000;		
+}
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+	<header>
+		<div class="top-header">
+			<div class="logo ">
+				<a href="#" class="logo-border"><img src="assest/img/logo.png" /></a>
+			</div>
+			<div class="partner-btn"><a class="cairo link-icon f-menu" href="#"><span class="link-text">كن شريكاً</span></a></div>
+			<div class="top-menu">
+				<a href="#" class="cairo link-icon f-menu"><span class="link-text">الرئيسية</span></a>
+				<a href="#" class="cairo link-icon f-menu"><span class="link-text">المجتمع</span></a>
+				<a></a>
+			</div>
+			<!-- mobile-menu -->
+			<nav class="menu">
+				<input type="checkbox" id="menuToggle">
+				<label for="menuToggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+				<ul>
+					<a href="#"><li>الرئيسية</li></a>
+					<a href="#"><li>المجتمع</li></a>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+<!-- Secton 1 -->
+	<div class="section-dash">
+	    <div class="snowflakes" aria-hidden="true">
+			<div class="snowflake icon-2">
+			❅
+			</div>
+			<div class="snowflake icon-3">
+			❅
+			</div>
+			<div class="snowflake icon-2">
+			❆
+			</div>
+			<div class="snowflake icon-3">
+			❄
+			</div>
+			<div class="snowflake icon-2">
+			❅
+			</div>
+			<div class="snowflake icon-3">
+			❆
+			</div>
+			<div class="snowflake icon-2">
+			❄
+			</div>
+			<div class="snowflake icon-3">
+			❅
+			</div>
+			<div class="snowflake icon-2">
+			❆
+			</div>
+			<div class="snowflake icon-3">
+			❄
+			</div>
+		  </div>
+	
+		<div class="dash-content-2">
+		    <div class="m-scene" id="main">
+  <div class="m-aside scene_element">
+			<div class="dash-header-2">
+				<div class="col-lg-4 col-md-4 col-12">
+					<div class="col-lg-4 col-md-4 col-12 avatar-0 avatar-00">
+						<img src="assest/img/frost.png" class="avatar-server"/>
+					</div>
+					<div class="col-lg-6 col-md-6 col-12 pl-0">
+						<div class="server-border">
+							<div class="row server-data">
+								<div class="server-name">Frost
+									<span class="server-code">turbo</span>
+								</div>
+							</div>
+							<div class="row edit-date">
+								<a href="#" class="date-btn">تاريخ التعديلات</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8 col-12 data-section">
+					<div class="data-s-1">
+						<div class="data-title">التفاعل الصوتي</div>
+						<div class="data-line">الان: <span class="span-data">220 عضو متصل</span></div>
+						<div class="data-line">اليوم: <span class="span-data">متوسط 160 عضو</span></div>
+						<div class="data-line">الشهر: <span class="span-data">متوسط 145 عضو</span></div>
+					</div>
+					<div class="data-s-2">
+						<div class="data-title">التفاعل الكتابي</div>
+						<div class="data-line">الان: <span class="span-data">458 رسالة</span></div>
+						<div class="data-line">اليوم: <span class="span-data">25645 رسالة</span></div>
+						<div class="data-line">الشهر: <span class="span-data">متوسط 322</span></div>
+					</div>
+					<div class="data-s-3">
+						<div class="data-title">الدخول</div>
+						<div class="data-line">اليوم: <span class="span-data">302 عضو</span></div>
+						<div class="data-line">الشهر: <span class="span-data">45245 عضو</span></div>
+						<div class="data-line">الاجمالي: <span class="span-data">2032211</span></div>
+					</div>
+					
+					<div class="accordion">
+						<div class="question active" id="section1">التفاعل الصوتي</div>
+						<div class="answer">
+							<div class="data-line">الان: <span class="span-data">220 عضو متصل</span></div>
+							<div class="data-line">اليوم: <span class="span-data">متوسط 160 عضو</span></div>
+							<div class="data-line">الشهر: <span class="span-data">متوسط 145 عضو</span></div>
+						</div>
+						<hr />
+						<div class="question" id="section2">التفاعل الكتابي</div>
+						<div class="answer">
+							<div class="data-line">الان: <span class="span-data">458 رسالة</span></div>
+							<div class="data-line">اليوم: <span class="span-data">25645 رسالة</span></div>
+							<div class="data-line">الشهر: <span class="span-data">متوسط 322</span></div>
+						</div>
+						<hr />
+						<div class="question" id="section3">الدخول</div>
+						<div class="answer">
+							<div class="data-line">اليوم: <span class="span-data">302 عضو</span></div>
+							<div class="data-line">الشهر: <span class="span-data">45245 عضو</span></div>
+							<div class="data-line">الاجمالي: <span class="span-data">2032211</span></div>
+						</div>
+						<hr />
+					</div>   
+				</div>
+			</div>
+			
+   <div class="dash-nav-s">
+				<a class="dash-link-s link-active-s" href="dashboard-3.html">الاستعلام</a>
+				<a class="dash-link-s" href="dashboard-3-2.html">المظهر</a>
+				<a class="dash-link-s" href="dashboard-3-3.html">الإشراف</a>
+				<a class="dash-link-s" href="dashboard-3-4.html">الإدارة</a>
+				<a class="dash-link-s" href="dashboard-3-5.html">القروبات</a>
+				<a class="dash-link-s" href="dashboard-3-6.html">الفعاليات</a>
+				<a class="dash-link-s" href="dashboard-3-7.html">التذاكر</a>
+				<a class="dash-link-s" href="dashboard-3-8.html">اللوق</a>
+				<a class="dash-link-s" href="dashboard-3-9.html">الحماية</a>
+				<a class="dash-link-s" href="dashboard-3-10.html">التشغيل</a>
+				<a class="dash-link-s" href="dashboard-3-11.html">الاعدادات</a>
+				<nav class="menu menu2">
+				<input type="checkbox" id="menuToggle2">
+				<label for="menuToggle2" class="menu-icon2"><i class="fa fa-bars"></i></label>
+				<ul>
+					<a href="dashboard-3.html"><li>الاستعلام</li></a>
+					<a href="dashboard-3-2.html"><li>المظهر</li></a>
+					<a href="dashboard-3-3.html"><li>الإشراف</li></a>
+					<a href="dashboard-3-4.html"><li>الإدارة</li></a>
+					<a href="dashboard-3-5.html"><li>القروبات</li></a>
+					<a href="dashboard-3-6.html"><li>الفعاليات</li></a>
+					<a href="dashboard-3-7.html"><li>التذاكر</li></a>
+					<a href="dashboard-3-8.html"><li>اللوق</li></a>
+					<a href="dashboard-3-9.html"><li>الحماية</li></a>
+					<a href="dashboard-3-10.html"><li>التشغيل</li></a>
+					<a href="dashboard-3-11.html"><li>الاعدادات</li></a>
+				</ul>
+			</nav>
+			</div>
+  </div>
+  <div class="m-right-panel m-page scene_element scene_element--fadeinright">
+    <div class="dash-400">
+			<div class="dash-2">
+				<div class="back-arrow"><a href="dashboard.html"><i class="fas fa-chevron-right"></i></a></div>
+				<div class="dash-2-content scene_element scene_element--fadeinup scene_element--fadeinright-wide">
+					<div class="cont-box">
+						<div class="box-title">الدسكورد</div>
+						<div class="box-main-content">
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#User</div>
+									<div class="server-option-desc">إظهار معلومات المستخدم وسيرفراته</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio">
+										<input type="radio" value="off" name="radio" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Server</div>
+									<div class="server-option-desc">إظهار معلومات السيرفر واحصائياته</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio2">
+										<input type="radio" value="off" name="radio2" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#ِAvatar</div>
+									<div class="server-option-desc">إظهار صورة المستخدم</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio3">
+										<input type="radio" value="off" name="radio3" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Top Servers</div>
+									<div class="server-option-desc">إظهار المنافسة واحصائيات السيرفرات</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio4">
+										<input type="radio" value="off" name="radio4" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="cont-box">
+						<div class="box-title">فروست</div>
+						<div class="box-main-content">
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Profile</div>
+									<div class="server-option-desc">إظهار بروفايل الشخص لدى فروست</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio5">
+										<input type="radio" value="off" name="radio5" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Coins</div>
+									<div class="server-option-desc">إظهار الكوينز الخاصة بك</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio6">
+										<input type="radio" value="off" name="radio6" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Reputation</div>
+									<div class="server-option-desc">إظهار نقاط السمعة لدى الشخص</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio7">
+										<input type="radio" value="off" name="radio7" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Ping</div>
+									<div class="server-option-desc">إظهار سرعة اتصال الخادم</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio8">
+										<input type="radio" value="off" name="radio8" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Leaderboard</div>
+									<div class="server-option-desc">إظهار المنافسة واحصائيات المستخدمين</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio9">
+										<input type="radio" value="off" name="radio9" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="cont-box">
+						<div class="box-title">السيرفر</div>
+						<div class="box-main-content">
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Top Voice</div>
+									<div class="server-option-desc">اعلى المتواجدين صوتياً قروبات/اشخاص/رولات</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio10">
+										<input type="radio" value="off" name="radio10" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Top Text</div>
+									<div class="server-option-desc">الاعلى كتابياً قروبات/اشخاص/رولات</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio11">
+										<input type="radio" value="off" name="radio11" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Top Inivtes</div>
+									<div class="server-option-desc">الاعلى نشراً قروبات/اشخاص/رولات</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio12">
+										<input type="radio" value="off" name="radio12" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#List</div>
+									<div class="server-option-desc">عرض أعضاء الرول بالكامل</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio13">
+										<input type="radio" value="off" name="radio13" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+							<div class="mini-box-1">
+								<div class="server-option-1a">
+									<div class="server-option-title">#Top Level</div>
+									<div class="server-option-desc">إظهار المنافسة واحصائيات المستخدمين</div>
+								</div>
+								<div class="server-option-1b">
+									<a href="" class="modal-link no-smoothState" data-target="#myModal4" data-toggle="modal"><i class="fas fa-cog"></i></a>
+								</div>
+								<div class="server-option-1c">
+									<div class="toggle">
+										<input type="radio" value="on" name="radio14">
+										<input type="radio" value="off" name="radio14" checked>
+										<div class="toggle__pointer"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			
+			
+			
+			</div>
+			
+				<!-- Modal -->
+				<style>.modal-backdrop{display:none !important;}</style>
+	<div class="modal fade no-smoothState" id="myModal4" role="dialog">
+		<div class="modal-dialog-2 modal-dialog">
+			<div class="modal-content-2 modal-content">
+				<div class="setting-title">#User</div>
+				<div class="input-div">
+					<label class="input-label">الاختصارات</label>
+					<input name="1" type="text" class="input-class" />
+				</div>
+				<div class="input-div">
+					<label class="input-label">الرولات المفعلة</label>
+					<input name="1" type="text" class="input-class" />
+				</div>
+				<div class="input-div">
+					<label class="input-label">الصلاحيات المفعلة</label>
+					<input name="1" type="text" class="input-class" />
+				</div>
+				<div class="input-div">
+					<label class="input-label">الشاتات المفعلة</label>
+					<input name="1" type="text" class="input-class" />
+				</div>
+				<div class="input-div">
+					<label class="input-label">الرولات المعطلة</label>
+					<input name="1" type="text" class="input-class" />
+				</div>
+				<div class="input-div">
+					<label class="input-label">الشاتات المعطلة</label>
+					<input name="1" type="text" class="input-class" />
+				</div>
+			</div>
+		</div>
+	</div>
+  <!-- End Modal -->
+  
+</div>
+			
+			
+		</div>
+		
+		<div class="row copyright text-center"> 2020 جميع الحقوق محفوظة لـفروست ©</div>
+		
+	</div>
+	
+
+   	
+	<!-- Lang Btn -->
+	<div class="plus-button"></div>
+	<a href="#"><div class="social-button uk-button"></div></a>
+	<a href="#"><div class="social-button fr-button"></div></a>
+	<a href="#"><div class="social-button sa-button"></div></a>
+	<!-- Scroll Top -->
+	<a href="#top" id="scroll" style="display: none;">
+	
+<!-- Start JS -->
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Script -->
+<script src="assest/js/script.js"></script>
+<script src="assest/js/dash-top.js"></script>
+<script src="assest/js/jquery.smoothState.min.js"></script>
+    <script src="assest/js/main.js"></script>
+<!-- Radio Button Script -->
+<script>
+var boxes = document.querySelectorAll('input[type="radio"]');
+boxes = Array.prototype.slice.call(boxes);
+
+boxes.forEach(function(box) {
+  box.addEventListener('change', function(e) {
+    // alert(e.currentTarget.value);
+  });
+});
+</script>
+
+<!-- END JS -->
+</body>
+</html>
