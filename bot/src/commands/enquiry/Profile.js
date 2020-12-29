@@ -18,7 +18,7 @@ module.exports = {
     const userAvatar = await resolveImage(user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }));
     const { coins, rep, xp, bio } = await user.getProfile();
     const canvas = new Canvas(347, 218);
-    canvas.strokeStyle = '#36393e';
+    canvas.strokeStyle = 'red';
     canvas.lineWidth = 50;
     canvas
       .printImage(backgroundImage, 0, 0, 347, 218)
@@ -44,7 +44,9 @@ module.exports = {
       .setTextAlign("center")
       .setTextSize(22)
       .printText(rep.likes > 0 ? "+" : rep.likes === 0 ? "" : "-", 174, 136)
-      .strokeRect(35, 161, 308, 161);
+      .beginPath()
+      .rect(35, 161, 308, 161)
+      .stroke();
     message.channel.send({ files: [{ attachment: canvas.toBuffer(), name: "profile.png" }] });
   }
 };
