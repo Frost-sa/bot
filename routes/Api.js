@@ -56,7 +56,7 @@ module.exports = client => {
     const params = new URLSearchParams();
     params.append("client_id", process.env.CLIENT_ID);
     params.append("client_secret", process.env.CLIENT_SECRET);
-    params.append("redirect_uri", process.env.REDIRECT_URI);
+    params.append("redirect_uri", "http://20.55.99.164/api/auth");
     params.append("code", code);
     params.append("grant_type", "authorization_code");
     params.append("scope", "identify+guilds+guilds.join");
@@ -66,13 +66,11 @@ module.exports = client => {
       }
     }).catch(error => error.response);
     if (!tokenResponse.data.access_token) return send(response, 401, { error: "Unauthorized." });
-
     const userResponse = await axios.get("/users/@me", {
       headers: {
         Authorization: `${tokenResponse.data.token_type} ${tokenResponse.data.access_token}`
       }
     }).catch(error => error.response);
-
     if (!userResponse.data.id) return send(response, 401, { error: "Unauthorized." });
     let userToken = `${randtoken.generate(16)}${Date.now()}`;
     const oldData = Object.values(users).find(user => user.id === userResponse.data.id);

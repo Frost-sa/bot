@@ -21,5 +21,14 @@ app.get("/leaderboard.png", async (request, response) => {
   if (!page) return response.status(404).redirect("/");
   response.sendFile(`${dir}/${page}`);
 });
+app.use(express.static("web/assest"));
+app.get("/", async (request, response) => {
+  response.sendFile(`${__dirname}/web/index.html`);
+});
+app.get("/:GuildID/dashboard", async (request, response) => {
+  const { GuildID } = request.params;
+  const guild = await client.guilds.fetch(GuildID);
+  response.sendFile(`${__dirname}/web/dashboard.html`);
+});
 app.listen(80, () => console.log("Listening on port 80!"));
 client.login(process.env.TOKEN);

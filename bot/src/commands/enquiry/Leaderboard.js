@@ -5,8 +5,12 @@ module.exports = {
     let coins = true;
     const reactions = { previous: "⏮️", next: "⏭️", level: "🏅", coins: "💰" };
     const getContent = () => `http://20.55.99.164/leaderboard.png?coins=${coins}&page=${counter + 1}&v=${Date.now() - this.lastLeaderUpdate > 60000 ? Date.now() : this.lastLeaderUpdate}`;
-    if (Date.now() - this.lastLeaderUpdate > 60000) await this.updateLeaderBoard();
+    if (Date.now() - this.lastLeaderUpdate > 60000) {
+      message.channel.startTyping();
+      await this.updateLeaderBoard();
+    }
     const theMessage = await message.channel.send(getContent());
+    message.channel.stopTyping();
     for (const Reaction of Object.values(reactions).slice(0, -1)) {
       await theMessage.react(Reaction);
     }
@@ -39,8 +43,8 @@ module.exports = {
         coins = false;
         break;
       }
-      if (counter > 9) counter = 0;
-      if (counter < 0) counter = 9;
+      if (counter > 2) counter = 0;
+      if (counter < 0) counter = 2;
       theMessage.edit(getContent());
     });
   }

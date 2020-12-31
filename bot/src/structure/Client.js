@@ -57,30 +57,31 @@ class FrostClient extends Client {
       require("child_process").execSync(`mkdir leaderboards\\${type}`);
       const icon = await resolveImage(`./leaderboards/icons/${type}.png`);
       if (usersData.length < 100) for (const _ of new Array(100 - usersData.length)) { usersData.push({ _id: this.user.id, coins: 0, xp: 0 }); }
-      for (let page = 0; page < 10; page++) {
+      for (let page = 0; page < 3; page++) {
         const users = usersData.sort((first, second) => second[type] - first[type]).slice(page * 10, (page * 10) + 10);
         const printer = new Canvas(434, 612)
           .printImage(await resolveImage(`./leaderboards/bg/${type}.png`), 0, 0, 434, 612)
           .setTextFont("17px Cairo-semibold")
           .setColor("#e0e0e0")
           .setTextSize(23.5);
+        const defaultAvatar = await resolveImage(this.user.displayAvatarURL({ format: "png", size: 4096 }));
         for (const userData of users) {
           const user = await this.users.fetch(userData._id) || this.user;
+          const avatar = user === this.user ? defaultAvatar : await resolveImage(user.displayAvatarURL({ format: "png", size: 4096 }));
           const username = user.username.slice(0, 15) + (user.username.length > 14 ? "..." : "");
           const index = users.indexOf(userData);
           printer.printText(`#${(page * 10) + index + 1}`, 14, 132 + (index * 50));
-          printer.printImage(await resolveImage(user.displayAvatarURL({ format: "png", size: 4096 })), 52, 103 + (index * 50), 45, 45);
+          printer.printImage(avatar, 52, 103 + (index * 50), 45, 45);
           printer.printText(username, 100, 132 + (index * 50));
           printer.printImage(icon, 340, 132 + (index * 50) - 23, 25, 25);
           printer.setTextAlign("center");
-          printer.printText(require("short-number")(userData[type]), 395, 132 + (index * 50));
+          printer.printText(require("short-number")(Math.floor(userData[type])), 395, 132 + (index * 50));
           printer.setTextAlign("left");
         }
         require("fs").writeFileSync(`${dir}/${page}.png`, printer.toBuffer());
-        if (page === 0) Promise.resolve(true);
       }
     }
+    return Promise.resolve(true);
   }
 }
-
 module.exports = FrostClient;

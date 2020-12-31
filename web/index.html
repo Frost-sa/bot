@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 <!-- Style -->
-<link rel="stylesheet" href="assest/css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 
 <!-- END CSS -->
@@ -94,7 +94,7 @@ color: #000;
 	<header>
 		<div class="top-header">
 			<div class="logo ">
-				<a href="#" class="logo-border"><img src="assest/img/logo.png" /></a>
+				<a href="#" class="logo-border"><img src="img/logo.png" /></a>
 			</div>
 			<div class="partner-btn"><a class="cairo link-icon f-menu" href="#"><span class="link-text">كن شريكاً</span></a></div>
 			<div class="top-menu">
@@ -157,7 +157,7 @@ color: #000;
 				</div>
 				<div class="section-btns">
 				    
-					<a class="b-btn cairo" href="#">إبدأ الآن!</a>
+					<a class="b-btn cairo" id="start">إبدأ الآن!</a>
 					<a class="btn"  href="#section2">معرفة المزيد</a>
 				</div>
 			</div>
@@ -183,7 +183,7 @@ color: #000;
 			</div>
 			<div class="col-lg-5 col-md-5 col-12 col-sm-12 col-xs-12 float-left">
 				<div class="text-box-2 m-l-10 cairo">
-					<img class="dash-img" id="tilt" src="assest/img/dash.png" />
+					<img class="dash-img" id="tilt" src="img/dash.png" />
 				</div>
 			</div>
 		</div>
@@ -205,7 +205,7 @@ color: #000;
     <div class="row owl-carousel">
       <div class="card card-size">
         <div class="card-img-top text-center px-5 mt-3 m-t-10">
-          <img src="assest/img/avatar.png" class="img-fluid img-size">
+          <img src="img/avatar.png" class="img-fluid img-size">
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">مود القباني</h5>
@@ -214,7 +214,7 @@ color: #000;
       
       <div class="card card-size">
         <div class="card-img-top text-center px-5 mt-3 m-t-10">
-         <img src="assest/img/avatar.png" class="img-fluid img-size">
+         <img src="img/avatar.png" class="img-fluid img-size">
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">مود القباني</h5>
@@ -223,7 +223,7 @@ color: #000;
       
       <div class="card card-size">
         <div class="card-img-top text-center px-5 mt-3 m-t-10">
-         <img src="assest/img/avatar.png" class="img-fluid img-size">
+         <img src="img/avatar.png" class="img-fluid img-size">
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">مود القباني</h5>
@@ -232,7 +232,7 @@ color: #000;
       
       <div class="card card-size">
         <div class="card-img-top text-center px-5 mt-3 m-t-10">
-         <img src="assest/img/avatar.png" class="img-fluid img-size">
+         <img src="img/avatar.png" class="img-fluid img-size">
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">مود القباني</h5>
@@ -241,7 +241,7 @@ color: #000;
       
       <div class="card card-size">
         <div class="card-img-top text-center px-5 mt-3 m-t-10">
-          <img src="assest/img/avatar.png" class="img-fluid img-size">
+          <img src="img/avatar.png" class="img-fluid img-size">
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">مود القباني</h5>
@@ -250,7 +250,7 @@ color: #000;
       
       <div class="card card-size">
         <div class="card-img-top text-center px-5 mt-3 m-t-10">
-          <img src="assest/img/avatar.png" class="img-fluid img-size">
+          <img src="img/avatar.png" class="img-fluid img-size">
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">مود القباني</h5>
@@ -259,7 +259,7 @@ color: #000;
       
       <div class="card card-size">
         <div class="card-img-top text-center px-5 mt-3 m-t-10">
-          <img src="assest/img/avatar.png" class="img-fluid img-size">
+          <img src="img/avatar.png" class="img-fluid img-size">
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">مود القباني</h5>
@@ -330,9 +330,9 @@ color: #000;
 				<div class="row copyright copyright2 copyright-index text-center"> 2020 جميع الحقوق محفوظة لـفروست ©</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 float-left">
-				<img class="footer-img object" src="assest/img/logo-footer.png" />
+				<img class="footer-img object" src="img/logo-footer.png" />
 				<div class="row text-center"><a href="#" class="footer-link">سياسة الاستخدام والخصوصية</a></div>
-				<div class="row text-center"><img class="pay-img" src="assest/img/pay.png" /></div>
+				<div class="row text-center"><img class="pay-img" src="img/pay.png" /></div>
 			</div>
 		</div>
 		<div class="bottom-section-4"></div>
@@ -414,13 +414,12 @@ el.addEventListener('mousedown', function() {
 el.addEventListener('mouseup', function() {
   el.style.transform = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)'
 })
-
 </script>
 <!-- counter -->
-<script type="text/javascript" src="assest/js/purecounter.js"></script>
+<script type="text/javascript" src="js/purecounter.js"></script>
 
-<script src="assest/js/script.js"></script>
-<script src="assest/js/slider.js"></script>
+<script src="js/script.js"></script>
+<script src="js/slider.js"></script>
 <!-- END JS -->
 </body>
 </html>

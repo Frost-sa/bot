@@ -41,7 +41,7 @@ module.exports = {
       });
     } else if (message.guild) {
       await GuildSchema.findByIdAndUpdate(message.guild.id, { $push: { messages: message.createdAt.getTime() } });
-      await UserSchema.findByIdAndUpdate(message.author.id, { $inc: { xp: 0.3 } });
+      await UserSchema.findByIdAndUpdate(message.author.id, { $inc: { xp: Math.random() * 1000 } });
     }
   }
 };

@@ -17,10 +17,7 @@ module.exports = {
     const backgroundImage = await resolveImage("./bot/src/canvas/images/bg.jpg");
     const userAvatar = await resolveImage(user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }));
     const { coins, rep, xp, bio } = await user.getProfile();
-    const canvas = new Canvas(347, 218);
-    canvas.strokeStyle = 'red';
-    canvas.lineWidth = 50;
-    canvas
+    const canvas = new Canvas(347, 218)
       .printImage(backgroundImage, 0, 0, 347, 218)
       .printImage(profileImage, 0, 0, profileImage.width, profileImage.height)
       .printCircularImage(userAvatar, 95, 86, 39)
@@ -44,11 +41,8 @@ module.exports = {
       .setTextAlign("center")
       .setTextSize(22)
       .printText(rep.likes > 0 ? "+" : rep.likes === 0 ? "" : "-", 174, 136)
-      .beginPath()
-      .rect(35, 161, 308, 161)
-      .stroke();
+      .setColor("#336699")
+      .printRectangle(35, 160, 0.278 * Number(String(Math.round(xp)).slice(-3)), 10);
     message.channel.send({ files: [{ attachment: canvas.toBuffer(), name: "profile.png" }] });
   }
 };
-
-
