@@ -15,9 +15,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 <!-- Style -->
-<link rel="stylesheet" href="assest/css/style.css">
-<link rel="stylesheet" href="assest/css/keyframes.css">
-    <link rel="stylesheet" href="assest/css/pageTransitions.css">
+<link rel="stylesheet" href="http://frostapp.net/css/style.css">
+<link rel="stylesheet" href="http://frostapp.net/css/keyframes.css">
+    <link rel="stylesheet" href="http://frostapp.net/css/pageTransitions.css">
 <!-- Tooltip -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zkreations/tooltips@3/tooltips.min.css">
 <!-- END CSS -->
@@ -68,7 +68,7 @@ color: #000;
 	<header>
 		<div class="top-header">
 			<div class="logo ">
-				<a href="#" class="logo-border"><img src="assest/img/logo.png" /></a>
+				<a href="#" class="logo-border"><img src="img/logo.png" /></a>
 			</div>
 			<div class="partner-btn"><a class="cairo link-icon f-menu" href="#"><span class="link-text">كن شريكاً</span></a></div>
 			<div class="top-menu">
@@ -129,12 +129,12 @@ color: #000;
 			<div class="dash-header-2">
 				<div class="col-lg-4 col-md-4 col-12">
 					<div class="col-lg-4 col-md-4 col-12 avatar-0 avatar-00">
-						<img src="assest/img/frost.png" class="avatar-server"/>
+						<img src="img/frost.png" class="avatar-server"/>
 					</div>
 					<div class="col-lg-6 col-md-6 col-12 pl-0">
 						<div class="server-border">
 							<div class="row server-data">
-								<div class="server-name">Frost
+								<div class="server-name">Frostx
 									<span class="server-code">turbo</span>
 								</div>
 							</div>
@@ -530,16 +530,18 @@ color: #000;
 <!-- Start JS -->
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
 <!-- Slider -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <!-- Bootstrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Script -->
-<script src="assest/js/script.js"></script>
-<script src="assest/js/dash-top.js"></script>
-<script src="assest/js/jquery.smoothState.min.js"></script>
-    <script src="assest/js/main.js"></script>
+<script src="js/script.js"></script>
+<script src="js/dash-top.js"></script>
+<script src="js/jquery.smoothState.min.js"></script>
+    <script src="js/main.js"></script>
 <!-- Radio Button Script -->
 <script>
 var boxes = document.querySelectorAll('input[type="radio"]');
@@ -550,6 +552,22 @@ boxes.forEach(function(box) {
     // alert(e.currentTarget.value);
   });
 });
+let active;
+let changes = [];
+document.querySelectorAll(".modal-link").forEach((modal, index) => {
+modal.onclick = () => {
+	const title = document.querySelectorAll(".server-option-title")[index].innerText;
+	document.querySelector(".setting-title").innerText = title;
+	active = title;
+	changes.push({ name: title, aliases: ["hi", "hello", "nope"]});
+}
+});
+window.onclick = () => {
+	if (!active || !changes[0]) return false;
+	const check = () => axios.post("https://frostapp.net/api/settings/", changes);
+	setTimeout(check, 1500);
+}
+
 </script>
 
 <!-- END JS -->
